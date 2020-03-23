@@ -49,7 +49,7 @@ selenium==3.141.0
 simplejson==3.13.2
 six==1.14.0
 soupsieve==2.0
-system-service==0.3
+
 systemd-python==234
 ubuntu-drivers-common==0.0.0
 ufw==0.36
