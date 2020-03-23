@@ -1,6 +1,6 @@
 asn1crypto==0.24.0
 beautifulsoup4==4.8.2
-bs4==0.0.1
+
 
 command-not-found==0.3
 cryptography==2.1.4
