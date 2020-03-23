@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup as bsp
 import requests
-
+import telebot
 from fake_useragent import UserAgent
 
 UserAgent().chrome
@@ -14,7 +14,7 @@ weather = soup.findAll('span', class_='js_value tab-weather__value_l')
 weather_first = (weather[0].text)
 print(weather_first.strip())
 
-import telebot
+
 bot = telebot.TeleBot('1073429036:AAGHTJq2nEdp1nbo6-7zpaPECG7x79bH908')
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
