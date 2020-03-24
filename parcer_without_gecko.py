@@ -24,5 +24,24 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, "Напиши привет")
     else:
         bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
-bot.polling(none_stop=True, interval=0)
-#
+#bot.polling(none_stop=True, interval=0)
+
+def forever_thread():
+    global port
+    PORT = port
+    Handler = http.server.SimpleHTTPRequestHandler
+
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print("serving at port", PORT)
+        httpd.serve_forever()
+
+
+try:
+    print('started')
+    port = int(os.getenv("PORT", default="9999"))
+    t = threading.Thread(target=forever_thread, daemon=True)
+    t.start()
+    bot.polling()
+except:
+    pass
+
