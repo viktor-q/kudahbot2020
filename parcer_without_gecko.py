@@ -38,11 +38,8 @@ def forever_thread():
         httpd.serve_forever()
 
 
-try:
-    print('started')
-    port = int(os.getenv("PORT", default="9999"))
-    t = threading.Thread(target=forever_thread, daemon=True)
-    t.start()
-    bot.polling()
-except:
-    pass
+print('started')
+port = int(os.getenv("PORT", default="9999"))
+t = threading.Thread(target=forever_thread, daemon=True)
+t.start()
+bot.polling()
