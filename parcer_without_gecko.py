@@ -44,4 +44,3 @@ try:
     bot.polling()
 except:
     pass
-
