@@ -7,23 +7,25 @@ import threading
 import os
 import http
 
-UserAgent().chrome
+def weathercheck():
+    UserAgent().chrome
+    url = 'https://www.gismeteo.ru/weather-sankt-peterburg-4079/'
+    page = requests.get(url, headers={'User-Agent': UserAgent().chrome})
+    soup = bsp(page.text, 'html.parser')
+    weather = soup.findAll('span', class_='js_value tab-weather__value_l')
+    weather_first = (weather[0].text)
+    return weather_first.strip()
 
-url = 'https://www.gismeteo.ru/weather-sankt-peterburg-4079/'
-page = requests.get(url, headers={'User-Agent': UserAgent().chrome})
-
-soup = bsp(page.text, 'html.parser')
-weather = soup.findAll('span', class_='js_value tab-weather__value_l')
-
-weather_first = (weather[0].text)
-print(weather_first.strip())
-
+# проверяем парсер
+print("Парсер погоды отработал и возвращает " + weathercheck())
 
 bot = telebot.TeleBot('1073429036:AAGHTJq2nEdp1nbo6-7zpaPECG7x79bH908')
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text == "Привет":
-        bot.send_message(message.from_user.id, "Привет, питушара. В Питере" + weather_first.strip())
+        bot.send_message(message.from_user.id, "Привет, питушара. В Питере" + weathercheck())
+        # проверяем ответ на привет
+        print("Отклик на привет")
     elif message.text == "/help":
         bot.send_message(message.from_user.id, "Напиши привет")
     else:
