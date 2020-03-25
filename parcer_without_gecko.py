@@ -19,7 +19,9 @@ def weathercheck():
 # проверяем парсер
 print("Парсер погоды отработал и возвращает " + weathercheck())
 
-bot = telebot.TeleBot('1073429036:AAGHTJq2nEdp1nbo6-7zpaPECG7x79bH908')
+#bot = telebot.TeleBot('1073429036:AAGHTJq2nEdp1nbo6-7zpaPECG7x79bH908')
+bot = telebot.TeleBot('1014012992:AAGJcR4WCaYO2cSAoEf25ChHJsZI7_Jhh1s')
+
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text == "Привет":
