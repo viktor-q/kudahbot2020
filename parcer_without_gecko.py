@@ -5,7 +5,7 @@ from fake_useragent import UserAgent
 import socketserver
 import threading
 import os
-import http
+import http.server
 
 def weathercheck():
     UserAgent().chrome
@@ -16,6 +16,15 @@ def weathercheck():
     weather_first = (weather[0].text)
     return weather_first.strip()
 
+def coincheck():
+    UserAgent().chrome
+    url = 'https://yandex.ru/'
+    page = requests.get(url, headers={'User-Agent': UserAgent().chrome})
+    soup = bsp(page.text, 'html.parser')
+    coin = soup.findAll('span', class_='inline-stocks__value_inner')
+    coin_first = (coin[0].text)
+    return (coin_first.strip())
+
 # проверяем парсер
 print("Парсер погоды отработал и возвращает " + weathercheck())
 
@@ -25,7 +34,8 @@ bot = telebot.TeleBot('1014012992:AAGJcR4WCaYO2cSAoEf25ChHJsZI7_Jhh1s')
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text == "Привет":
-        bot.send_message(message.from_user.id, "Привет, питушара. В Питере" + weathercheck())
+        bot.send_message(message.from_user.id, "Привет, питушара. В Питере " + weathercheck())
+        bot.send_message(message.from_user.id, "А между прочим, бакс сейчас стоит " + coincheck())
         # проверяем ответ на привет
         print("Отклик на привет")
     elif message.text == "/help":
