@@ -53,7 +53,7 @@ def petrolcheck():
     for elem in all_rec_string['price']:
         if elem['type'] == '95':
             extract = elem['avg']
-            return (int(float(extract) * 100) / 100)
+            return int(float(extract) * 100) / 100
 
 
 # проверяем парсер
