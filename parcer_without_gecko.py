@@ -65,9 +65,9 @@ bot = telebot.TeleBot('1014012992:AAGJcR4WCaYO2cSAoEf25ChHJsZI7_Jhh1s')
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text == "Привет":
-        bot.send_message(message.from_user.id, "Привет, питушара. В Питере " + weathercheck())
+        bot.send_message(message.from_user.id, "Привет. В Питере " + weathercheck())
         bot.send_message(message.from_user.id, "А между прочим, бакс сейчас стоит " + coincheck())
-        bot.send_message(message.from_user.id, "Если задумал заправить свой сраный трактор и свалить из сраной рашки, то бензинчик сейчас стоит " + str(petrolcheck()))
+        bot.send_message(message.from_user.id, "Если задумал заправить свой трактор и свалить, то бензинчик сейчас стоит " + str(petrolcheck()))
         # проверяем ответ на привет
         print("Отклик на привет")
     elif message.text == "/help":
